@@ -1,49 +1,86 @@
-# ItBuild auth (JavaScript)
-Universal package for itbuild.app authentication process.
+# Trex wallet SDK (JavaScript)
 
 ## Configuration:
 
-process.env variables are used for configuration:
+process.env variable are used for configuration:
 
 ```
-PROJECT_ID=test
-AUTH_API_URL=https://telestore.itbuild.app:8081/
-USER_KEY=532be8142c2680590828a64ad46c64bbbe50709de1f23d52cdd69187ad9d62eb
+AUTH_API_URL=https://test-project.api/
 ```
 
-## Usage
+## Response interface
+
+Each return type from the SDK functions is wrapped in an ApiResponse<T> object:
+
+```ts
+export interface ApiResponse<T> {
+  error?: ErrorObject | null;
+  result?: T | null;
+}
+
+export interface ErrorObject {
+  code: number; // Error code can be used to catch specific error codes
+  readonly message: string | null; // Error description     
+}
+```
+
+## Authorization
 
 ### Obtaining a new session
 
 The `signInUserKey` function is used to obtain the cookie:
 
 ```ts
-// Returns a string containing the session ID
-// null in case of an error
-const sessionId = await signInUserKey();
+var authProxyClient = new AuthProxyClient();
+
+await authProxyClient.signInUserKey(<YOUR_USER_KEY>);
+
+// Returns sessionId string if session exists
+// null if session not found
+const sessionId = authProxyClient.GetSessionId();
 ```
 
 After that, sessionId can be used to authorize requests.
 
-### Creating or restoring a key
+## Usage
 
-To restore a key, you need to perform the following sequence of requests:
+To use a wallet instance you need to log in via authProxyClient
 
-1. Request key restoration
-2. Initialize a new key
-3. Create a new key
+### Create wallet instance
 
 ```ts
-// Sends a code to the email associated with the phone number
-// Returns a status string "Success"
-// null in case of an error
-const result = await resetPassword('<PHONE_NUMBER>');
+// authProxyClient is object of AuthProxyClient
+var walletClient = new TrexWalletClient(authProxyClient);
+```
 
-// Initializes the creation of a new key, sends an OTP code to the associated phone number, and returns data for creating a new key
-// null in case of an error
-const authOptions = await initializeNewKey({ code: '<EMAIL_CODE>' });
+### Create invoice
 
-// Returns the user key, which is set in USER_KEY to obtain sessions
-// null in case of an error
-const userKey = await createUserKey('<OTP_CODE>', authOptions);
+```ts
+var response = await walletClient.createTransactionCode({
+      amount: 10,
+      currency: "USDT",
+      timeLimit: true,
+      typeTx: CodeTypeEnum.InvoiceTx,
+      externalID: <YOUR_APP_ID>,
+      partnerInfo: <YOUR_USER_ID>,
+      tag: <YOUR_INFO>
+    });
+
+if (response.error) {
+    throw; // Your error handling
+}
+
+var codeInfo = response.result;
+```
+
+### Get transaction history
+
+```ts
+var response = await walletClient.getTransactionHistory();
+
+if (response.error) {
+    throw; // Your error handling
+}
+
+var transactions = response.result;
 ```

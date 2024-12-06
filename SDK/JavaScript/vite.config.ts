@@ -8,7 +8,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/index'),
       name: 'trex-wallet-sdk',
       formats: ['cjs'],
-      fileName: `itbuild_trex`,
+      fileName: `trex_wallet`,
     },
     rollupOptions: {
       external: [],

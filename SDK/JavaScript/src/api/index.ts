@@ -1,14 +1,10 @@
-import ApiRequest from "./api-request";
 import { objectToQueryParams } from "@/helpers/objectToQueryParams";
 import {
   ApplyCodeParams,
-  ApplyCodeResult,
   CreateAddressParams,
   GetBalanceParams,
   GetListTransactionCodesParams,
   GetTransactionCodeInfoParams,
-  GetTransactionHistoryParams,
-  HistoryTransaction,
   InternalTransferData,
   ConfirmationQuery,
   ListAddressesParams,
@@ -17,41 +13,19 @@ import {
   TransactionInfo,
   TransactionSenderInfo,
   TxCode,
-  TxCodeInfo,
   WalletAddress,
   WalletBalance,
   WalletInfo,
   TransferData
 } from "./model";
 
+const ApiRequest = <T>(data?: any, temp?: any) => null;
+
 export const apiGetInfo = (sid?: string) =>
   ApiRequest<WalletInfo>("trex/v1/wallet/get_info", {
     credentials: "include",
     headers: {
       Accept: "application/json",
-      Cookie: `sid=${sid}`
-    }
-  });
-
-export const apiGetTransactionHistory = (params: GetTransactionHistoryParams, sid?: string) =>
-  ApiRequest<HistoryTransaction[]>(`trex/v1/wallet/get_history_transactions?${objectToQueryParams(params)}`, {
-    method: "GET",
-    credentials: "include",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Cookie: `sid=${sid}`
-    }
-  });
-
-export const apiCreateTransactionCode = (data: TxCodeInfo, sid?: string) =>
-  ApiRequest<TxCode>('trex/v1/create_tx_code', {
-    method: "POST",
-    credentials: "include",
-    body: JSON.stringify(data),
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
       Cookie: `sid=${sid}`
     }
   });
@@ -70,17 +44,6 @@ export const apiListTransactionCodes = (params: GetListTransactionCodesParams, s
 export const apiTransactionCodeInfo = (params: GetTransactionCodeInfoParams, sid?: string) =>
   ApiRequest<TxCode>(`trex/v1/code_tx_info?${objectToQueryParams(params)}`, {
     method: "GET",
-    credentials: "include",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Cookie: `sid=${sid}`
-    }
-  });
-
-export const apiApplyCode = (params: ApplyCodeParams, sid?: string) =>
-  ApiRequest<ApplyCodeResult>(`trex/v1/apply_code?${objectToQueryParams(params)}`, {
-    method: "POST",
     credentials: "include",
     headers: {
       Accept: "application/json",

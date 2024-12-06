@@ -5,8 +5,11 @@ export interface ErrorObject {
 
 export interface ApiResponse<T> {
   error?: ErrorObject | null;
-  id?: number;
   result?: T | null;
+}
+
+export interface ApiResponseExt<T> extends ApiResponse<T> {
+  id?: number;
   headers?: Record<string, string> | null;
 }
 
@@ -168,7 +171,7 @@ export interface HistoryTransaction {
   tx_type_text?: string | null;
 }
 
-enum CodeTypeEnum {
+export enum CodeTypeEnum {
   None = 0,
   RoomKey = 1,
   AgentLink = 2,
@@ -186,10 +189,12 @@ enum CodeTypeEnum {
 
 export interface TxCodeInfo {
   amount?: number;
-  clientNonce?: number;
   currency?: string | null;
-  timeLimit?: boolean;
   typeTx?: CodeTypeEnum;
+  timeLimit?: boolean;
+  externalID?: number;
+  partnerInfo?: string;
+  tag?: string;
 }
 
 export interface TxCode {

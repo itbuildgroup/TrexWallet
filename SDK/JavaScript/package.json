@@ -1,11 +1,11 @@
 {
-  "name": "@itbuildgroup/itbuild.trex",
+  "name": "@itbuildgroup/trex.wallet",
   "version": "1.0.0",
   "type": "commonjs",
-  "main": "dist/itbuild_trex.cjs",
+  "main": "dist/trex_wallet.js",
   "repository": {
     "type:": "git",
-    "url": "git+https://github.com/itbuildgroup/ItBuild.Trex.JS.git"
+    "url": "git+https://github.com/itbuildgroup/TrexWallet.git"
   },
   "scripts": {
     "build": "vite build"
@@ -15,10 +15,11 @@
   ],
   "keywords": [],
   "author": "itbuildgroup",
-  "types": "./dist/itbuild_trex.d.ts",
+  "types": "./dist/trex_wallet.d.ts",
   "license": "Apache-2.0",
-  "description": "Universal package for itbuild.app authentication process.",
+  "description": "Universal package for crypto wallet operations.",
   "dependencies": {
+    "@itbuildgroup/auth.proxy": "^1.0.1"
   },
   "engines": {
     "node": ">=14.0.0"
@@ -30,7 +31,7 @@
     "vite-plugin-dts": "^4.3.0"
   },
   "bugs": {
-    "url": "https://github.com/itbuildgroup/ItBuild.Trex.JS/issues"
+    "url": "https://github.com/itbuildgroup/TrexWallet/issues"
   },
-  "homepage": "https://github.com/itbuildgroup/ItBuild.Trex.JS#readme"
+  "homepage": "https://github.com/itbuildgroup/TrexWallet/blob/main/SDK/JavaScript/README.md"
 }
