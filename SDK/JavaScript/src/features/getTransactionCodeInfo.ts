@@ -1,5 +1,5 @@
 import { apiTransactionCodeInfo } from "../api";
-import { ErrorObject, GetTransactionCodeInfoParams, TxCode } from "../api/model";
+import { ErrorObject, GetTransactionCodeInfoParams, TxCode } from "../model";
 
 /**
  * Requests transaction code info

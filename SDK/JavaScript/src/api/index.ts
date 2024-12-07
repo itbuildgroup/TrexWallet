@@ -17,7 +17,7 @@ import {
   WalletBalance,
   WalletInfo,
   TransferData
-} from "./model";
+} from "../model";
 
 const ApiRequest = <T>(data?: any, temp?: any) => null;
 

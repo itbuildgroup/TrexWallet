@@ -1,5 +1,5 @@
 import { apiUpdateTxPartnerInfo } from "../api";
-import { TransactionSenderInfo } from "../api/model";
+import { TransactionSenderInfo } from "../model";
 
 /**
  * Cancel transaction code

@@ -1,5 +1,5 @@
 import { apiTokensNetworks } from "../api";
-import { ErrorObject, NetworkInfo, TokenNetworkParams } from "../api/model";
+import { ErrorObject, NetworkInfo, TokenNetworkParams } from "../model";
 
 /**
  * Returns user's wallet info

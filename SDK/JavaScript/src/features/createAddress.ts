@@ -1,6 +1,6 @@
 import { apiCreateAddress } from "../api";
 import { getTokenNetworks } from "./getTokenNetworks";
-import { ErrorObject, WalletAddress } from "../api/model";
+import { ErrorObject, WalletAddress } from "../model";
 
 /**
  * Creates new crypto address for network

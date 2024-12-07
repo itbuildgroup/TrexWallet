@@ -1,5 +1,5 @@
 import { apiGetInfo } from "../api";
-import { ErrorObject, WalletInfo } from "../api/model";
+import { ErrorObject, WalletInfo } from "../model";
 
 /**
  * Returns user's wallet info

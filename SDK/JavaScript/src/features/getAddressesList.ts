@@ -1,6 +1,6 @@
 import { apiListAddresses } from "../api";
 import { getTokenNetworks } from "./getTokenNetworks";
-import { ErrorObject, WalletAddress } from "../api/model";
+import { ErrorObject, WalletAddress } from "../model";
 
 /**
  * Returns addresses list for crypto network

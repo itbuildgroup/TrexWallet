@@ -1,5 +1,5 @@
 import { apiInternalTransfer } from "../api";
-import { ErrorObject, InternalTransferData, ConfirmationQuery, TransactionInfo } from "../api/model";
+import { ErrorObject, InternalTransferData, ConfirmationQuery, TransactionInfo } from "../model";
 
 /**
  * Creates new transfer request to internal address

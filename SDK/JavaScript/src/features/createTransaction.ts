@@ -1,5 +1,5 @@
 import { apiCreateWithdraw } from "../api";
-import { ErrorObject, ConfirmationQuery, TransferData, TransactionInfo } from "../api/model";
+import { ErrorObject, ConfirmationQuery, TransferData, TransactionInfo } from "../model";
 
 /**
  * Creates new transfer request

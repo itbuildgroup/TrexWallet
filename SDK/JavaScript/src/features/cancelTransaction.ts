@@ -1,5 +1,5 @@
 import { apiCancelTransaction } from "../api";
-import { ErrorObject } from "../api/model";
+import { ErrorObject } from "../model";
 
 /**
  * Creates new transfer request

@@ -1,4 +1,4 @@
-import { AuthProxyClient } from "@itbuildgroup/auth.proxy";
+import { AuthProxyClient } from "@itbuild/auth.proxy";
 import {
   ApiResponse,
   ApiResponseExt,
@@ -9,7 +9,7 @@ import {
   HistoryTransaction,
   TxCode,
   TxCodeInfo
-} from "./api/model";
+} from "./model";
 import { objectToQueryParams } from "./helpers/objectToQueryParams";
 
 export class TrexWalletClient {

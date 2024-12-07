@@ -26,7 +26,10 @@ export default defineConfig({
     dts({
       // @ts-ignore
       outputDir: 'dist/types',
-      include: ['src/**/*'],
+      include: [
+        'src/index.ts',
+        'src/model/index.ts'
+      ],
       rollupTypes: true,
     })
   ]

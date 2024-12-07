@@ -1,5 +1,5 @@
 import { apiCancelCode } from "../api";
-import { ApplyCodeParams } from "../api/model";
+import { ApplyCodeParams } from "../model";
 
 /**
  * Cancel transaction code

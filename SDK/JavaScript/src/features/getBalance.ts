@@ -1,5 +1,5 @@
 import { apiGetBalance } from "../api";
-import { ErrorObject, WalletBalance } from "../api/model";
+import { ErrorObject, WalletBalance } from "../model";
 
 /**
  * Returns user's wallet balance
