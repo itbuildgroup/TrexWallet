@@ -6,6 +6,7 @@ import {
   ApplyCodeResult,
   ErrorObject,
   GetTransactionHistoryParams,
+  GetTransactionInfoParams,
   HistoryTransaction,
   TxCode,
   TxCodeInfo
@@ -34,7 +35,6 @@ export class TrexWalletClient {
   /**
    * Creates a special money transfer code
    * @param data transaction code info
-   * @param sessionId User's session id
    * @returns object of {@link TxCode} on success
    * @returns object of {@link ErrorObject} on error
    */
@@ -48,12 +48,22 @@ export class TrexWalletClient {
   /**
    * Requests user's transaction history
    * @param params filtering params
-   * @param sessionId User's session id
    * @returns array of {@link HistoryTransaction} objects
    */
   public async GetTransactionHistory(params: GetTransactionHistoryParams): Promise<ApiResponse<HistoryTransaction[]>> {
     return await this.ApiRequest<HistoryTransaction[]>(
       `trex/v1/wallet/get_history_transactions?${objectToQueryParams(params)}`, { method: "GET" }
+    );
+  }
+
+  /**
+   * Requests transaction info by id
+   * @param params filtering params
+   * @returns array of {@link HistoryTransaction} objects
+   */
+  public async GetTransactionInfo(params: GetTransactionInfoParams): Promise<ApiResponse<HistoryTransaction>> {
+    return await this.ApiRequest<HistoryTransaction>(
+      `trex/v1/wallet/get_tx_info?${objectToQueryParams(params)}`, { method: "GET" }
     );
   }
 

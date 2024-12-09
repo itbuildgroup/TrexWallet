@@ -75,6 +75,10 @@ export type GetTransactionHistoryParams = {
   include_address_data?: boolean;
 };
 
+export type GetTransactionInfoParams = {
+  id: number;
+};
+
 export enum OriginalStatusEnum {
   None = 0,
   Successful = 1,
