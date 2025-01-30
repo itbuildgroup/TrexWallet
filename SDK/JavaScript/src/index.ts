@@ -75,7 +75,7 @@ export class TrexWalletClient {
     };
 
     try {
-      const response = await fetch(this.authProxyClient.BaseUrl + url, {
+      const request = fetch(this.authProxyClient.BaseUrl + url, {
         credentials: "include",
         ...init,
         headers: {
@@ -84,6 +84,15 @@ export class TrexWalletClient {
           ...(this.authProxyClient.GetSessionId() ? { Cookie: `sid=${this.authProxyClient.GetSessionId()}` } : {})
         }
       });
+
+      var response = await request;
+
+      // Try to reconnect on 401
+      if (response.status === 401) {
+        this.authProxyClient.Connect();
+
+        response = await request;
+      }
 
       if (response.ok) {
         response.headers.forEach((value, key) => {
