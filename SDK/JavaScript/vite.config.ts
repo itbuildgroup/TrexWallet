@@ -11,11 +11,12 @@ export default defineConfig({
       fileName: `trex_wallet`,
     },
     rollupOptions: {
-      external: [],
+      external: ['fs', 'path'],
       output: {
         globals: {},
       },
     },
+    target: 'node18'
   },
   resolve: {
     alias: {
