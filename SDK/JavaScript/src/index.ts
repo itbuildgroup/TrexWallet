@@ -13,6 +13,8 @@ import {
 } from "./model";
 import { objectToQueryParams } from "./helpers/objectToQueryParams";
 
+export * from './model';
+
 export class TrexWalletClient {
   private authProxyClient: AuthProxyClient;
 
