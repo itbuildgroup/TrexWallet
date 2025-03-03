@@ -1,6 +1,6 @@
 {
   "name": "@itbuild/trex.wallet",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "type": "commonjs",
   "main": "dist/trex_wallet.js",
   "repository": {
