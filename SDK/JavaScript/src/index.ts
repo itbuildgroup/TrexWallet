@@ -91,7 +91,7 @@ export class TrexWalletClient {
 
       // Try to reconnect on 401
       if (response.status === 401) {
-        this.authProxyClient.Connect();
+        await this.authProxyClient.Connect(true);
 
         response = await request;
       }
