@@ -73,10 +73,11 @@ export type GetTransactionHistoryParams = {
   limit?: number;
   awaitsInfoOnly?: boolean;
   include_address_data?: boolean;
+  order_by_update?: boolean;
 };
 
 export type GetTransactionInfoParams = {
-  id: number;
+  id: string;
 };
 
 export enum OriginalStatusEnum {
@@ -196,7 +197,7 @@ export interface TxCodeInfo {
   currency?: string | null;
   typeTx?: CodeTypeEnum;
   timeLimit?: boolean;
-  externalID?: number;
+  externalID?: string;
   partnerInfo?: string;
   tag?: string;
 }
@@ -269,8 +270,9 @@ export enum ConfirmationStatus {
 
 export interface ApplyCodeResult {
   confirmationStatusCode?: ConfirmationStatus;
-  confirmCode?: string | null;
   result?: string | null;
+  tx_id?: string | null;
+  confirmCode?: string | null;
 }
 
 export interface WalletBalance {
