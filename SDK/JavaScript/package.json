@@ -1,6 +1,6 @@
 {
   "name": "@itbuild/trex.wallet",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "type": "commonjs",
   "main": "dist/trex_wallet.js",
   "repository": {
@@ -19,7 +19,7 @@
   "license": "Apache-2.0",
   "description": "Universal package for crypto wallet operations.",
   "dependencies": {
-    "@itbuild/auth.proxy": "^1.0.18"
+    "@itbuild/auth.proxy": "^1.0.19"
   },
   "engines": {
     "node": ">=18.0.0"
