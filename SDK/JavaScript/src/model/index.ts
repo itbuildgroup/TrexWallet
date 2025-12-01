@@ -65,15 +65,58 @@ export enum TransactionTypeEnum {
 }
 
 export type GetTransactionHistoryParams = {
+  /**
+   * Start date (without time) of UTC search, if not set - then 90 days from end
+   */
   start?: string;
+  /**
+   * End date (without time) of UTC selection, if not set - then current
+   */
   end?: string;
-  next_key?: string;
-  currencies?: string[];
-  tx_types?: TransactionTypeEnum[];
+  /**
+   * Start tick, used in higher priority than "start" parameter
+   */
+  start_tick?: string;
+  /**
+   * End tick, excluded from selection, used in higher priority than "end" parameter and for lazy loading (send the last next_key here)
+   */
+  end_tick?: string;
+  /**
+   * Number of transactions in the output, by default 10, but not more than 100
+   */
   limit?: number;
+  /**
+   * Filter by external_id
+   */
+  external_id?: string;
+  /**
+   * Filter by transaction currencies
+   */
+  currencies?: string[];
+  /**
+   * Filter for crypto transactions with the Income type and without partner information. If true, values ​​in tx_types will be ignored
+   */
   awaitsInfoOnly?: boolean;
-  include_address_data?: boolean;
+  /**
+   * Order transactions by update time, instead of creation time
+   */
   order_by_update?: boolean;
+  /**
+   * Includes in the output the data about address transactions (blockchain or other external network)
+   */
+  include_address_data?: boolean;
+  /**
+   * Exclude transactions with cancelled state
+   */
+  exclude_cancelled_txs?: boolean;
+  /**
+   * Include transactions with draft state (state = 0)
+   */
+  include_draft_txs?: boolean;
+  /**
+   * Filter by transaction types in the selection
+   */
+  tx_types?: TransactTypeEnum[];
 };
 
 export type GetTransactionInfoParams = {
@@ -159,21 +202,83 @@ export enum TransactTypeEnum {
 
 export interface HistoryTransaction {
   address_tx_data?: AddressTxData;
+  /**
+   * Amount of operation.
+   * @nullable
+   */
   amount?: string | null;
+  /** Balance after completion of the operation (full balance, including free+orders+out (without in)) */
   balance?: number;
+  /**
+   * Can cancel transaction
+   * @nullable
+   */
+  can_cancel?: boolean | null;
+  /**
+   * Currency name
+   * @nullable
+   */
   currency?: string | null;
+  /** tx creation date in UTC */
   datetime?: string;
+  /**
+   * External id of a connected process
+   * @nullable
+   */
+  external_id?: string | null;
+  /**
+   * Fee
+   * @nullable
+   */
   fee?: string | null;
+  /**
+   * Group id (for transactions that were accepted together)
+   * @nullable
+   */
+  group?: string | null;
+  /**
+   * Internal tx ID
+   * @nullable
+   */
   id_transaction?: string | null;
+  /**
+   * Tx update timetick
+   * @nullable
+   */
+  id_update?: string | null;
+  /** Direction of funds */
   is_income?: boolean;
+  /**
+   * Text key of the data array containing information about the boundaries of the sample, needed for lazy loading of the next portion
+   * @nullable
+   */
   next_key?: string | null;
+  /**
+   * Sender/receiver data
+   * @nullable
+   */
   partner_info?: string | null;
+  /** Amount received into the account or written off from the account (deduction of commission for incoming, summ for outgoing transactions) */
   result_amount?: number;
   status?: TransactStateEnum;
+  /**
+   * Status (string)
+   * @nullable
+   */
   status_text?: string | null;
+  /**
+   * Other comments
+   * @nullable
+   */
   tag?: string | null;
   tx_type?: TransactTypeEnum;
+  /**
+   * Short tx type description
+   * @nullable
+   */
   tx_type_text?: string | null;
+  /** Last update date in UTC */
+  update_datetime?: string;
 }
 
 export enum CodeTypeEnum {
